@@ -11,14 +11,16 @@
 // ==/UserScript==
 
 (function() {
-    'use strict';
+    const css = `
+        #rightcolumn .hidden-xs.alert.alert-info,
+        #rightcolumn .visible-xs {
+            display: none !important;
+        }
+    `;
 
     const style = document.createElement('style');
-    style.textContent = `
-    .container > .row #rightcolumn .hidden-xs.alert.alert-info,
-    .container > .row #rightcolumn .visible-xs {
-        display: none !important;
-    }
-    `;
-    document.head.appendChild(style);
+    style.textContent = css;
+
+    // This works immediately, even before DOMContentLoaded
+    document.documentElement.appendChild(style);
 })();
